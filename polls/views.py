@@ -5,6 +5,7 @@ from django.shortcuts import render
 from polls.models import Question, Answer
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.views.generic import View
 
 def index(request):
     question_list = Question.objects.all()
@@ -34,4 +35,7 @@ def results(request, question_id):
     question = Question.objects.get(id=question_id)
     context = {'question': question}
     return render(request, 'polls/results.html', context)
-    
+
+
+class About(View):
+    template_name = 'polls/about.html'
