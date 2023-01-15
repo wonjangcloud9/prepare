@@ -4,5 +4,13 @@ from django.contrib import admin
 
 from .models import Question, Answer
 
-admin.site.register(Question)
+class QuestionAdmin(admin.ModelAdmin):
+    fieldsets = [
+        (None, {'fields': ['subject']}),
+        ('Question information', {'fields': ['content']}),
+        ('Date information', {'fields': ['create_date']}),
+    ]
+
+
+admin.site.register(Question, QuestionAdmin)
 admin.site.register(Answer)
